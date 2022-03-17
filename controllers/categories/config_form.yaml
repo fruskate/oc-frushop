@@ -1,0 +1,10 @@
+name: Categories
+form: $/frukt/frushop/models/category/fields.yaml
+modelClass: Frukt\Frushop\Models\Category
+defaultRedirect: frukt/frushop/categories
+create:
+    redirect: 'frukt/frushop/categories/update/:id'
+    redirectClose: frukt/frushop/categories
+update:
+    redirect: frukt/frushop/categories
+    redirectClose: frukt/frushop/categories

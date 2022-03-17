@@ -1,0 +1,12 @@
+<div class="card mt-3">
+    <div class="card-body">
+        <div class="d-flex justify-content-start align-items-start flex-column">
+            {% for item in categories %}
+                {% partial __SELF__~"::make_category_list" item = item %}
+            {% else %}
+                <div class="w-100 alert alert-danger my-3">Категории отсутствуют!</div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,10 @@
+name: Products
+form: $/frukt/frushop/models/product/fields.yaml
+modelClass: Frukt\Frushop\Models\Product
+defaultRedirect: frukt/frushop/products
+create:
+    redirect: 'frukt/frushop/products/update/:id'
+    redirectClose: frukt/frushop/products
+update:
+    redirect: frukt/frushop/products
+    redirectClose: frukt/frushop/products

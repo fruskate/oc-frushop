@@ -1,0 +1,45 @@
+fields:
+    is_active:
+        label: 'ОТОБРАЖАТЬ НА САЙТЕ?'
+        span: full
+        default: 1
+        type: switch
+    title:
+        label: НАЗВАНИЕ
+        span: auto
+        type: text
+    slug:
+        label: 'URL ЗАПИСИ'
+        span: auto
+        type: text
+        preset: title
+    desc:
+        label: 'ОПИСАНИЕ ПРОДУКТА'
+        size: huge
+        span: full
+        type: richeditor
+    categories:
+        label: КАТЕГОРИИ
+        nameFrom: title
+        descriptionFrom: description
+        span: auto
+        type: relation
+    images:
+        label: ИЗОБРАЖЕНИЯ
+        mode: image
+        imageWidth: '70'
+        imageHeight: '70'
+        useCaption: 0
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+tabs:
+    fields:
+        info_offers@create:
+            type: partial
+            tab: Предложения
+        relation_offers@update:
+            type: partial
+            tab: Предложения

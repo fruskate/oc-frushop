@@ -1,0 +1,8 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    is_show_js:
+        label: ПОКАЗЫВАТЬ JS
+        type: switch

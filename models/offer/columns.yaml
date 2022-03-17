@@ -1,0 +1,10 @@
+columns:
+    quantity:
+        label: Количество
+        type: text
+    price:
+        label: Стоимость
+        type: text
+    is_active:
+        label: На сайте
+        type: switch

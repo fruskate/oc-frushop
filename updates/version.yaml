@@ -1,0 +1,14 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table frukt_frushop_categories'
+    - builder_table_create_frukt_frushop_categories.php
+1.0.3:
+    - 'Created table frukt_frushop_products'
+    - builder_table_create_frukt_frushop_products.php
+1.0.4:
+    - 'Created table frukt_frushop_category_product many to many relations'
+    - migration104.php
+1.0.5:
+    - 'Created table frukt_frushop_offers'
+    - builder_table_create_frukt_frushop_offers.php

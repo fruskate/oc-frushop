@@ -1,0 +1,38 @@
+fields:
+    title:
+        label: 'НАЗВАНИЕ КАТЕГОРИИ'
+        span: auto
+        type: text
+    slug:
+        label: 'URL ЗАПИСИ'
+        span: auto
+        type: text
+        preset: title
+    is_active:
+        label: 'АКТИВНО?'
+        span: auto
+        type: switch
+        default: true
+    parent:
+        label: 'РОДИТЕЛЬСКАЯ КАТЕГОРИЯ'
+        nameFrom: title
+        descriptionFrom: description
+        span: auto
+        type: relation
+        emptyOption: '--- РОДИТЕЛЬСКАЯ КАТЕГОРИЯ ---'
+    desc:
+        label: 'ОПИСАНИЕ КАТЕГОРИИ'
+        size: large
+        span: full
+        type: richeditor
+    cover:
+        label: ИЗОБРАЖЕНИЕ
+        mode: image
+        imageWidth: '70'
+        imageHeight: '70'
+        useCaption: 0
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload

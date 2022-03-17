@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row g-2">
+        <div class="col-md-4">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-start align-items-start flex-column">
+                        {% partial __SELF__~"::make_category_list" item = __SELF__.category %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            {% partial __SELF__~"::make_products" items = __SELF__.products %}
+        </div>
+    </div>
+</div>

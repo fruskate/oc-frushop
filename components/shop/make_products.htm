@@ -1,0 +1,5 @@
+{% for item in items %}
+    {% partial __SELF__~"::make_card_product" item = item %}
+{% else %}
+    <div class="alert alert-info">В данной категории нет продуктов.</div>
+{% endfor %}

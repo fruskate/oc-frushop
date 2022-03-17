@@ -1,0 +1,13 @@
+columns:
+    title:
+        label: 'НАЗВАНИЕ КАТЕГОРИИ'
+        type: text
+        searchable: true
+    cover:
+        label: ИЗОБРАЖЕНИЕ
+        type: image
+    products_count:
+        label: ПРОДУКТОВ
+        relation: products
+        relationCount: 'true'
+        type: number

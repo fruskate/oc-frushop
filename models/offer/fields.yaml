@@ -1,0 +1,15 @@
+fields:
+    is_active:
+        label: 'Показывать на сайте'
+        span: full
+        type: switch
+        default: true
+    quantity:
+        label: Количество
+        span: auto
+        type: number
+    price:
+        label: Цена
+        span: auto
+        type: number
+

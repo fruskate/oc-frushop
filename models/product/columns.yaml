@@ -1,0 +1,13 @@
+columns:
+    title:
+        label: НАЗВАНИЕ
+        type: text
+    images:
+        label: ИЗОБРАЖЕНИЕ
+        type: image
+    created_at:
+        label: СОЗДАНО
+        type: timesince
+    is_active:
+        label: 'НА САЙТЕ'
+        type: switch

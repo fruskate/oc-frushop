@@ -1,0 +1,7 @@
+{% if this.page.id == 'shop-index' %}
+    {% partial __SELF__~"::page_index" %}
+{% elseif this.page.id == 'shop-category' %}
+    {% partial __SELF__~"::page_category" %}
+{% elseif this.page.id == 'shop-product' %}
+    {% partial __SELF__~"::page_product" %}
+{% endif %}

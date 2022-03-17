@@ -1,0 +1,8 @@
+<div {% if margin %}style="margin-left: {{ margin }}px;"{% endif %}>
+    <a href="/shop/c/{{ item.slug }}">{{ item.title }}</a>
+</div>
+{% if item.children.count() > 0 %}
+    {% for item in item.children if item.is_active %}
+        {% partial __SELF__~"::make_category_list" item = item margin = margin + 10 %}
+    {% endfor %}
+{% endif %}

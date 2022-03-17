@@ -1,0 +1,12 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+offers:
+    label: Предложения продукта
+    view:
+        list: $/frukt/frushop/models/offer/columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        form: $/frukt/frushop/models/offer/fields.yaml
+        recordsPerPage: 20

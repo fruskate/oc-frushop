@@ -1,0 +1,10 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    category:
+        label: Категории
+        modelClass: Frukt\Frushop\Models\Category
+        scope: filterCategories
+        nameFrom: title
