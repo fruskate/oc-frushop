@@ -30,4 +30,8 @@ class Offer extends Model
     public $belongsTo = [
         'product' => Product::class,
     ];
+
+    public $attachMany = [
+        'images' => \System\Models\File::class,
+    ];
 }

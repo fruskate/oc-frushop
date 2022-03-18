@@ -113,13 +113,61 @@ class Shop extends ComponentBase
 
     public function onAddToCart()
     {
+        trace_log(post());
         CartHelper::addItem(post('offer_id'), post('quantity'));
-        $data = CartHelper::cartIconInfo();
 
         return [
             '#offer' . post('offer_id') => '<div class="alert alert-success">Успешно добавлено</div>',
-            '#cartIconQuantity'         => $data['quantity'],
-            '#cartIconTotal'            => $data['total'],
+            '#cartIcon' => $this->renderPartial('@make_cart_icon', ['item' => CartHelper::cartIconInfo()])
+        ];
+    }
+
+    public function onChangeOffer()
+    {
+        $offer = Offer::find(post('offer_id'));
+        $quantity = 0;
+        if ($offer->quantity > 0) {
+            $quantity = 1;
+        }
+        return [
+            '#hiddenData' => '<input type="hidden" name="offer_id" value="'.$offer->id.'">',
+            '#offerPrice' => $offer->price,
+            '#offerQuantity' => $this->renderPartial($this.'::make_offer_quantity', [
+                'item' => $offer,
+                'quantity' => $quantity
+            ]),
+        ];
+    }
+
+    public function onAddQuantity()
+    {
+        $offer = Offer::find(post('offer_id'));
+        $quantity = post('quantity');
+        if ($offer->quantity > $quantity) {
+            $quantity++;
+        }
+
+        return [
+            '#offerQuantity' => $this->renderPartial($this.'::make_offer_quantity', [
+                'item' => $offer,
+                'quantity' => $quantity
+            ]),
+        ];
+    }
+
+    public function onRemoveQuantity()
+    {
+        $offer = Offer::find(post('offer_id'));
+        $quantity = post('quantity');
+        if ($quantity > 1) {
+            $quantity--;
+        }
+
+        return [
+            '#offerQuantity' => $this->renderPartial($this.'::make_offer_quantity', [
+                'item' => $offer,
+                'quantity' => $quantity
+            ]),
         ];
     }
 }

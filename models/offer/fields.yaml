@@ -4,6 +4,18 @@ fields:
         span: full
         type: switch
         default: true
+    images:
+        label: ИЗОБРАЖЕНИЯ
+        mode: image
+        required: true
+        imageWidth: '70'
+        imageHeight: '70'
+        useCaption: 0
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: full
+        type: fileupload
     quantity:
         label: Количество
         span: auto

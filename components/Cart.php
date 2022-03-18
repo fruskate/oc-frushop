@@ -32,38 +32,35 @@ class Cart extends ComponentBase
     public function onRemoveFromCart()
     {
         CartHelper::removeItem(post('offer_id'));
-        $data = CartHelper::cartIconInfo();
 
         return [
-            '#cartIconQuantity' => $data['quantity'],
-            '#cartIconTotal'    => $data['total'],
+            '#cartIcon' => $this->renderPartial('@make_cart_icon', ['item' => CartHelper::cartIconInfo()]),
             '#cartItem'.post('offer_id') => '',
+            '#totalCartPrice' => CartHelper::getTotalCartPrice(),
         ];
     }
 
     public function onAddQuantity()
     {
         CartHelper::addQuantity(post('offer_id'));
-        $data = CartHelper::cartIconInfo();
         $item = CartHelper::cartItemInfo(post('offer_id'));
 
         return [
-            '#cartIconQuantity' => $data['quantity'],
-            '#cartIconTotal'    => $data['total'],
-            '#cartItem'.post('offer_id') => $this->renderPartial($this.'::make_cart_item', ['item' => $item])
+            '#cartIcon' => $this->renderPartial('@make_cart_icon', ['item' => CartHelper::cartIconInfo()]),
+            '#cartItem'.post('offer_id') => $this->renderPartial($this.'::make_cart_item', ['item' => $item]),
+            '#totalCartPrice' => CartHelper::getTotalCartPrice(),
         ];
     }
 
     public function onRemoveQuantity()
     {
         CartHelper::removeQuantity(post('offer_id'));
-        $data = CartHelper::cartIconInfo();
         $item = CartHelper::cartItemInfo(post('offer_id'));
 
         return [
-            '#cartIconQuantity' => $data['quantity'],
-            '#cartIconTotal'    => $data['total'],
-            '#cartItem'.post('offer_id') => $this->renderPartial($this.'::make_cart_item', ['item' => $item])
+            '#cartIcon' => $this->renderPartial('@make_cart_icon', ['item' => CartHelper::cartIconInfo()]),
+            '#cartItem'.post('offer_id') => $this->renderPartial($this.'::make_cart_item', ['item' => $item]),
+            '#totalCartPrice' => CartHelper::getTotalCartPrice(),
         ];
     }
 }

@@ -39,7 +39,8 @@ class CartHelper
                 'title'    => $offer->product->title,
                 'quantity' => $quantity,
                 'price'    => $offer->price,
-                'total'    => $offer->price * $quantity
+                'total'    => $offer->price * $quantity,
+                'url'      => \Request::url(),
             ];
         }
 
@@ -49,6 +50,16 @@ class CartHelper
     public static function getItems()
     {
         return Session::get('cart', ['items' => array()]);
+    }
+
+    public static function getTotalCartPrice()
+    {
+        $sessionCart = Session::get('cart', ['items' => array()]);
+        $total = 0;
+        foreach ($sessionCart['items'] as $item) {
+            $total += $item['total'];
+        }
+        return $total;
     }
 
     public static function removeItem($offerId)
