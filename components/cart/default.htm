@@ -1,14 +1,25 @@
 <div class="container">
     <div class="h4 mt-3 text-center">В вашей корзине:</div>
     {% set totalCartPrice = 0 %}
-    {% for item in __SELF__.cart.items %}
-        {% set totalCartPrice = totalCartPrice + item.total %}
-        <div id="cartItem{{ item.id }}">
-            {% partial __SELF__~"::make_cart_item" item = item %}
-        </div>
+    {% if user %}
+        {% for item in user.cart_items %}
+            {% set totalCartPrice = totalCartPrice + item.quantity * item.offer.price %}
+            <div id="cartItem{{ item.offer_id }}">
+                {% partial __SELF__~"::make_cart_item_for_user" item = item %}
+            </div>
+        {% else %}
+            <div class="alert alert-info">Ваша корзина пуста, скорее добавьте товар в неё!</div>
+        {% endfor %}
     {% else %}
-        <div class="alert alert-info">Ваша корзина пуста, скорее добавьте товар в неё!</div>
-    {% endfor %}
+        {% for item in __SELF__.cart.items %}
+            {% set totalCartPrice = totalCartPrice + item.total %}
+            <div id="cartItem{{ item.id }}">
+                {% partial __SELF__~"::make_cart_item" item = item %}
+            </div>
+        {% else %}
+            <div class="alert alert-info">Ваша корзина пуста, скорее добавьте товар в неё!</div>
+        {% endfor %}
+    {% endif %}
     <div class="mt-3 h5 text-center">
         Итого: <strong id="totalCartPrice">{{ totalCartPrice }}</strong> руб
     </div>

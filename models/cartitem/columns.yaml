@@ -1,0 +1,14 @@
+columns:
+    user:
+        label: Пользователь
+        type: text
+        select: email
+        relation: user
+    offer:
+        label: Предложение
+        type: text
+        select: name
+        relation: offer
+    quantity:
+        label: Количество
+        type: number

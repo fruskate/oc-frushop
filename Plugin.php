@@ -8,6 +8,8 @@ use Frukt\Frushop\Components\Cart as ComponentCart;
 
 class Plugin extends PluginBase
 {
+    public $require = ['Frukt.Users'];
+
     public function registerComponents()
     {
         return [

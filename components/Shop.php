@@ -2,10 +2,12 @@
 
 use Cms\Classes\ComponentBase;
 use Frukt\Frushop\Classes\CartHelper;
+use Frukt\Frushop\Models\CartItem;
 use Frukt\Frushop\Models\Category;
 use Frukt\Frushop\Models\Offer;
 use Frukt\Frushop\Models\Product;
 use Frukt\Frushop\Models\Settings;
+use FruktAuth;
 
 /**
  * Shop Component
@@ -114,14 +116,36 @@ class Shop extends ComponentBase
     public function onAddToCart()
     {
         trace_log(post());
-        CartHelper::addItem(post('offer_id'), post('quantity'));
+        // TODO: Сделать обновление в иконке корзины
+        $user = FruktAuth::getUser();
 
-        return [
-            '#offer' . post('offer_id') => '<div class="alert alert-success">Успешно добавлено</div>',
-            '#cartIcon' => $this->renderPartial('@make_cart_icon', ['item' => CartHelper::cartIconInfo()])
-        ];
+        if ($user) {
+            if (!$user->cart_items()->where('offer_id', post('offer_id'))->exists()) {
+                CartItem::create([
+                    'user_id' => $user->id,
+                    'offer_id' => post('offer_id'),
+                    'quantity' => post('quantity'),
+                    'offer_url' => \Request::url()
+                ]);
+            } else {
+                $user->cart_items()
+                    ->where('offer_id', post('offer_id'))
+                    ->increment('quantity', post('quantity'));
+            }
+        } else {
+            CartHelper::addItem(post('offer_id'), post('quantity'));
+
+            return [
+                '#offer' . post('offer_id') => '<div class="alert alert-success">Успешно добавлено</div>',
+                '#cartIcon' => $this->renderPartial('@make_cart_icon', ['item' => CartHelper::cartIconInfo()])
+            ];
+        }
+
     }
 
+    /*
+     * Используется при выборе предложения на странице продукта
+     */
     public function onChangeOffer()
     {
         $offer = Offer::find(post('offer_id'));
@@ -139,6 +163,9 @@ class Shop extends ComponentBase
         ];
     }
 
+    /*
+     * Используется при повышении количества на странице продукта
+     */
     public function onAddQuantity()
     {
         $offer = Offer::find(post('offer_id'));
@@ -155,6 +182,9 @@ class Shop extends ComponentBase
         ];
     }
 
+    /*
+     * Используется при уменьшении количества на странице продукта
+     */
     public function onRemoveQuantity()
     {
         $offer = Offer::find(post('offer_id'));

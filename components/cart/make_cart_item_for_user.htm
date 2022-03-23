@@ -1,0 +1,58 @@
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-start align-items-center">
+                <div class="me-2">
+                    {% if item.offer_url %}
+                        <a href="{{ item.offer_url }}">
+                            {{ item.offer.product.title }}
+                        </a>
+                    {% else %}
+                        {{ item.offer.product.title }}
+                    {% endif %}
+                </div>
+                <div class="me-2">
+                    {% if item.quantity > 1 %}
+                    <a href="javascript:void(0);"
+                       data-request="onRemoveQuantity"
+                       data-request-data="offer_id: '{{ item.offer_id }}'">
+                        {% endif %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                            <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                        </svg>
+                        {% if item.quantity > 1 %}
+                    </a>
+                    {% endif %}
+                </div>
+                <div class="me-2">{{ item.quantity }}</div>
+                <div class="me-2">
+                    {% if item.offer.quantity > item.quantity %}
+                    <a href="javascript:void(0);"
+                       data-request="onAddQuantity"
+                       data-request-data="offer_id: '{{ item.offer_id }}'">
+                        {% endif %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                            <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                        </svg>
+                        {% if item.offer.quantity > item.quantity %}
+                    </a>
+                    {% endif %}
+                </div>
+                <div class="me-2">x</div>
+                <div class="me-2">{{ item.offer.price }}</div>
+                <div class="me-2">=</div>
+                <div class="me-2">{{ item.total }}</div>
+                <div class="me-2">руб</div>
+            </div>
+            <div class="m-2">
+                <a href="javascript:void(0)"
+                   data-request="onRemoveFromCart"
+                   data-request-data="offer_id: '{{ item.offer_id }}'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

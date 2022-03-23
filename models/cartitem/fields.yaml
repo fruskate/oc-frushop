@@ -1,0 +1,13 @@
+fields:
+    user:
+        label: Пользователь
+        nameFrom: email
+        descriptionFrom: description
+        span: auto
+        type: relation
+    offer:
+        label: Предложение
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        type: relation

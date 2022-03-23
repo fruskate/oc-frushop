@@ -12,3 +12,9 @@
 1.0.5:
     - 'Created table frukt_frushop_offers'
     - builder_table_create_frukt_frushop_offers.php
+1.0.6:
+    - 'Created table frukt_frushop_cartitems'
+    - builder_table_create_frukt_frushop_cartitems.php
+1.0.7:
+    - 'Updated table frukt_frushop_cartitems'
+    - builder_table_update_frukt_frushop_cartitems.php
