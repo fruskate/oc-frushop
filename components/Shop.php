@@ -43,6 +43,13 @@ class Shop extends ComponentBase
                 return \Response::make($this->controller->run('404')->getContent(), 404);
             }
 
+            // Если родительская категория отключена - то и child категории будут возвращать 404 ошибку.
+            if (!is_null($this->category->parent_id)) {
+                if (!$this->category->parent->is_active) {
+                    return \Response::make($this->controller->run('404')->getContent(), 404);
+                }
+            }
+
             $allParentAndSelfCategories = $this->category->getAllChildrenAndSelf();
 
 
